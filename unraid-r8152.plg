@@ -55,22 +55,8 @@ Source: https://github.com/jinlife/unraid-r8125-r8152-driver
 
 download() {
 # Download r8152 package
-if wget -q -nc --show-progress --progress=bar:force:noscroll -O "&packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}" "${DL_URL}/${LAT_PACKAGE}" 2>/dev/null ; then
-  wget -q -nc --show-progress --progress=bar:force:noscroll -O "&packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}.md5" "${DL_URL}/${LAT_PACKAGE}.md5"
-  if [ "$(md5sum &packages;/${KERNEL_V%%-*}/${LAT_PACKAGE} | awk '{print $1}')" != "$(cat &packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}.md5 | awk '{print $1}')" ]; then
-    echo
-    echo "---CHECKSUM ERROR!---"
-    rm -rf &plugin; &emhttp;
-    exit 1
-  fi
-  echo
-  echo "-------------------Sucessfully downloaded RTL8152 package-------------------"
-else
-  echo
-  echo "-----------------------Can't download RTL8152 package-----------------------"
-  rm -rf &plugin; &emhttp;
-  exit 1
-fi
+wget -q -nc --show-progress --progress=bar:force:noscroll -O "&packages;/${KERNEL_V%%-*}/${LAT_PACKAGE}" "${DL_URL}/${LAT_PACKAGE}" 2>/dev/null ; then  
+echo "-------------------Sucessfully downloaded RTL8152 package-------------------"
 }
 
 check() {
